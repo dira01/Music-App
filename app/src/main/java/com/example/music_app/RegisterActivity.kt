@@ -53,7 +53,7 @@ class RegisterActivity : AppCompatActivity() {
         //obtener la informacion que escribe el usuario
         val nombre = etNombre.text.toString().trim()
         val correo = etCorreo.text.toString().trim()
-        val password = etPassword.toString().trim()
+        val password = etPassword.text.toString().trim()
 
         //validar que los campos tengan informacion
 

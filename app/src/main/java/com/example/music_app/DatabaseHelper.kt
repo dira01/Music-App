@@ -1,6 +1,6 @@
 package com.example.music_app
 
-import android.R
+
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -20,7 +20,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper (
     companion object{
 
         private const val DATABASE_NAME = "musica.db"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
         private const val TABLE_USUARIOS = "usuarios"
         private const val COL_ID = "ID"
         private const val COL_NOMBRE = "nombre"
@@ -84,26 +84,30 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper (
 
     // metodo para consultar a un usuario
 
-    fun iniciarSesion(correo: String, password: String) : Boolean{
+    // MeTODO PARA CONSULTAR A UN USUARIO
+    fun iniciarSesion(correo : String, password: String) : Boolean{
 
         val db = readableDatabase
 
         val query_sql = """
             SELECT * FROM $TABLE_USUARIOS
-            WHERE $COL_CORREO  = ? AND $COL_PASSWORD = ?
+            WHERE $COL_CORREO = ? AND $COL_PASSWORD = ?
         """.trimIndent()
 
-        //Crear cursor para recorrer la informacion
+        // Crear cursor para recorrer la información
         val cursor = db.rawQuery(
-            query_sql,arrayOf(correo, password)
+            query_sql, arrayOf(correo, password)
         )
-        //Crear variable de tipo bool que permita saber si el cursor encontro un registro
-        val usuarioEncondrado = cursor.count > 0
+
+        // Crear variable de tipo Bool que permita saber si el cursor encontró un registro
+        val usuarioEncontrado = cursor.count > 0
 
         cursor.close()
         db.close()
 
-        return  usuarioEncondrado
+
+        return usuarioEncontrado
+
 
     }
 
